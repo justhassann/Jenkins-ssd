@@ -1,15 +1,19 @@
 pipeline {
     agent any
-    // THIS IS THE NEW ENVIRONMENT BLOCK
+    // THIS IS THE NEW TOOLS BLOCK
+    tools {
+        maven 'Maven' 
+    }
     environment {
         NEW_VERSION = '1.3.0' 
     }
     stages {
         stage('Build') {
             steps {
-                // THESE STEPS ARE MODIFIED
+                // THIS STAGE IS MODIFIED AGAIN
                 echo 'Building Project'
-                echo "Building version ${NEW_VERSION}" 
+                echo "Building version ${NEW_VERSION}"
+                sh "mvn --version" 
             }
         }
         stage('Test') {
